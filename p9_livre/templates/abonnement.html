@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+
+
+{% block class_subscriptions %}
+class="active"
+{% endblock %}
+
+
+{% block content %}
+
+<div class="col-md-3" style="background-color: grey;" >
+
+</div>
+
+<div class="row col-md-6"  style=" padding-bottom: 830px;" >
+   <div class=" card center global__width" style="padding-top: 25px;"> 
+    <h1 class="card-title text-center">Mes Abonnements</h1>
+        <div class="subscriptions__item">
+            <div class="card card-body align-items-center">
+                
+                
+                
+                    <p class="card-text">Suivre d'autres utilisateurs</p>
+                    <form action="." method="POST" enctype="multipart/form-data">
+                        
+                      
+                        
+                        <br>
+                        {% csrf_token %}
+                        {{ UserFollowsForm }}
+                        <button type="submit" class="btn btn-lg btn-primary bg-dark">Envoyer</button>
+                    </form>
+            </div>    
+        {% if error_message is not None %}
+        <p class="error__message">{{ error_message }}</p>
+        {% elif validation_message is not None %}
+        <p class="validation__message">{{ validation_message }}</p>
+        {% else %}
+        <p></p>
+        {% endif %}
+    </div>
+    <div class=" card card-body align-items-center subscriptions__item">
+        <h3 class="card-title">Abonnements</h3>
+        {% if not subscriptions %}
+        <p class="error__message">Vous n'êtes abonnées à aucun utilisateur.</p>
+        {% else %}
+        <table class="subscriptions__table">
+            {% for subscription in subscriptions %}
+            <tr>
+                <td>{{ subscription.followed_user.username }}</td>
+                <td>
+                    <!--@formatter:off-->
+                    <a href="{% url "delete_subscription" subscription.followed_user.id %}">Désabonner</a>
+                    <!--@formatter:on-->
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+    <div class="card card-body align-items-center subscriptions__item">
+        <h3 class="card-title">Abonnés</h3>
+        {% if not subscribers %}
+        <p class="error__message">Vous n'avez aucun abonné pour le moment.</p>
+        {% else %}
+        <table class="subscriptions__table">
+            {% for subscriber in subscribers %}
+            <tr>
+                <td>{{ subscriber.username }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3" style="background-color: grey;">
+
+</div>
+
+{% endblock %} 

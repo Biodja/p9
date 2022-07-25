@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-3" style="background-color: grey;">
+
+</div>
+
+<div class="col-md-6" style="align-items: center;">
+    
+    <div  class="col-md-12" style="align-items: center;">
+
+        
+      {% include 'modale_ticket_reviews.html' %}
+    </div>
+
+{% for post in posts %}
+    
+
+    <div class="grid-container">
+        
+      
+        <div class="post col-md-11 text-center border shadow-sm mx-auto my-4">
+     
+                <div class="row mt-2">
+                    <div class="col-md-6">
+
+                    </div>
+                    
+                    <div class="col-md-6">
+
+
+
+                        
+
+
+                        
+                    </div>
+                    {% if post.content_type == 'TICKET' %}
+          
+
+                        {% with ticket=post %}
+               
+                        {% include 'ticket_snippet.html' %}
+                        {% endwith %}       
+
+
+
+                    {% elif post.content_type == 'REVIEW' %}
+
+
+                        {% with review=post %}    
+                        
+                        {% include 'review_snippet2.html' %}
+                    
+        
+                
+                        {% endwith %}
+
+                    {% else %}
+                    <p>Pas de post </p>  
+
+                    {% endif %}
+                
+
+
+
+
+                </div>
+
+
+
+
+
+                    
+            
+        </div>
+
+
+        
+
+
+    </div>
+          
+    
+     
+
+    
+ 
+
+        
+
+{% endfor %}
+
+</div>
+<div class="col-md-3" style="background-color: grey;">
+</div>
+{% endblock %}
+
+
+
+

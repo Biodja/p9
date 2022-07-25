@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+
+
+
+
+<form method="POST">
+  {% csrf_token %}
+
+    
+    <div  class="container">
+    <div class="row">
+        
+      
+      
+      
+      <div> 
+
+            <body  class="text-center">
+                <main style="padding: 10%;" class="form-signin">
+               
+                    <h1 class="h3 mb-3 fw-normal">S'inscrire</h1>
+                
+                    <div class="form-floating">
+                      <input id="username" type="text" class="form-control" name="username">
+                      <label for="username">Nom d'utilisateur :</label>
+                    </div>
+
+                    <div class="form-floating">
+                      <input id="username" type="text" class="form-control" name="username">
+                      <label for="username">Nom :</label>
+                    </div>
+                    <div class="form-floating">
+                      <input id="username" type="text" class="form-control" name="username">
+                      <label for="username">Prenom :</label>
+                    </div>
+
+                    <div class="form-floating">
+                      <input type="password" class="form-control" id="password" placeholder="mot de passe" name="password">
+                      <label for="password">Mot de passe :</label>
+                    </div>
+                
+                    <div class="submit-row">
+                      <button class="w-100 btn btn-lg btn-primary" type="submit">S'inscrire</button>
+                    </div>
+                 
+                </main>
+                </body>
+
+            <div class="col-md-2">
+
+            </div>
+        </div>
+    </div>
+
+
+ 
+
+ </form>
+
+
+
+{% endblock %}

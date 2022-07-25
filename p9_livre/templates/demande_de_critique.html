@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+
+
+
+{% block content %}
+<div class="col-md-3" style="background-color: grey;" >
+
+</div>
+
+<div class="row col-md-6"  style=" padding-bottom: 830px;" >
+    <form class="card text-center" enctype="multipart/form-data" action="{% url 'demande' %}" method="POST">
+
+        
+            {{ demande.as_p }}   
+            {% csrf_token %}
+
+        
+            <div style="align-items: center;">
+            
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary bg-dark">Publier</button>
+                
+            </div>
+        
+     
+    </form>
+
+        
+     
+        
+
+</div>
+
+
+<div class="col-md-3" style="background-color: grey;">
+
+</div>
+
+{% endblock %}      
+
+

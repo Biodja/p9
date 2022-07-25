@@ -1,0 +1,66 @@
+<!-- Modal -->
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <div class="d-grid gap-2 d-md-block">
+            <a class="btn btn-primary col-md-12 bg-dark" href="{% url 'demande' %}" >Demander une critique</a>
+
+        </div>
+        
+    </div>
+</div>          
+<div class="modal fade" id="exampleModal1" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
+      <div class=" post modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="text-align: center;" id="exampleModalLabel">Demander une critique</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+          <!-- formulaires pour la modale de publication de ticket -->
+          
+          <form enctype="multipart/form-data" method="POST">
+              {{ publication.as_p }}   
+              {% csrf_token %}
+
+          
+            <div class="modal-footer">
+            
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary bg-dark">Publier</button>
+              
+            </div>
+           
+        </form> 
+        <!-- fin du formulaire pour la modale de publication de ticket -->
+
+      </div>
+      </div> 
+    </div>
+</div>
+<form enctype="multipart/form-data" method="POST">
+  <div class="modal fade" id="exampleModal2" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class=" post modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Répondre a la critique :</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ publication.as_p }}   
+            {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary bg-dark">Publier</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</form>
+
+
+</div>
+{% endblock %}

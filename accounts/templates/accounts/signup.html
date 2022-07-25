@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<form method="POST" style="text-align: center;">
+  <br>
+  <h2 >Log In</h2> 
+  <br>
+    <div class="row col-md-4 ">
+    </div>
+  
+    <div class="row col-md-4 offset-md-4">
+  
+      {% csrf_token %}
+
+
+      <div class="form-group">
+        <label for="username">Nom d’utilisateur : </label>
+        <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username">
+        <small id="emailHelp" class="form-text text-muted">Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères « @ », « . », « + », « - » et « _ ».</small>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="first_name">Nom : </label>
+        <input  name="first_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="last_name">Prénom : </label>
+        <input name="last_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username">
+      <br>
+      </div>
+      
+      <div class="form-group">
+        <label for="password1">Mot de passe : </label>
+        <input name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <small class="form-text text-muted">Votre mot de passe doit contenir au minimum 8 caractères.</small>
+      <br>
+      </div>
+      
+      <div class="form-group">
+        <label for="password2">Confirmation du mot de passe : </label>
+        <input name="password2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <br>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <br>
+      </div>
+      <br>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        <br>
+      </div>
+      <br>
+      <button type="submit" value="Connexion" class="btn btn-primary bg-dark">S'inscrire</button>
+    </div>
+    <div class="row col-md-4">
+    </div>
+</form>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base2.html' %}
+
+
+
+{% block content %}
+<form method="POST" class=" bg-dark">
+    {% csrf_token %}
+<div class="container-fluid card col-xl-10 col-xxl-8 px-4 py-5 position-absolute top-50 start-50 translate-middle ">
+    <div class="row card-body align-items-center g-lg-5 py-5 " style="bottom: -100px;">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">LitReview</h1>
+        <p class="col-lg-10 fs-4">Le site de reference pour les résumés de tout vos livres préféré.</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light">
+          <div class="form-floating mb-3">
+            <input id="username" type="text" class="form-control" name="username">
+            <label for="username">Nom d'utilisateur :</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary bg-dark" >Se connecter</button>
+          <a class="w-100 btn btn-lg btn-secondary " href="{% url 'signup' %}" >S'inscrire</a>
+          <hr class="my-4">
+          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
+
