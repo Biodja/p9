@@ -6,19 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('p9_livre', '0002_ticket_description_ticket_image_ticket_time_created_and_more'),
+        (
+            "p9_livre",
+            "0002_ticket_description_ticket_image_ticket_time_created_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='review',
-            name='description',
+            model_name="review",
+            name="description",
             field=models.TextField(blank=True, max_length=2048, null=True),
         ),
         migrations.AddField(
-            model_name='review',
-            name='title',
-            field=models.CharField(default='title', max_length=128),
+            model_name="review",
+            name="title",
+            field=models.CharField(default="title", max_length=128),
             preserve_default=False,
         ),
     ]

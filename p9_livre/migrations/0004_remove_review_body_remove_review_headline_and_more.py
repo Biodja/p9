@@ -7,21 +7,25 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('p9_livre', '0003_review_description_review_title'),
+        ("p9_livre", "0003_review_description_review_title"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='review',
-            name='body',
+            model_name="review",
+            name="body",
         ),
         migrations.RemoveField(
-            model_name='review',
-            name='headline',
+            model_name="review",
+            name="headline",
         ),
         migrations.AlterField(
-            model_name='review',
-            name='ticket',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='p9_livre.ticket'),
+            model_name="review",
+            name="ticket",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="reviews",
+                to="p9_livre.ticket",
+            ),
         ),
     ]
