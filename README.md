@@ -6,8 +6,8 @@
     pip install -r requirements.txt
 
 # Objectifs du projet
-- Crée un site web pour que les utilisateurs
-qui leur permet de demander des résumé de livre
+- Creer un site web pour que les utilisateurs
+puissent demander des résumés de livres
 - maitriser le framework django
 
 
