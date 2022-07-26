@@ -59,7 +59,13 @@
         <br>
       </div>
       <br>
+      {% if forms.errors  %}
+      {{ forms.errors }}  
+      {% endif %}  
       <button type="submit" value="Connexion" class="btn btn-primary bg-dark">S'inscrire</button>
+
+
+      
     </div>
     <div class="row col-md-4">
     </div>

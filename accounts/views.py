@@ -15,6 +15,7 @@ def signup(request):
 
             return redirect("Home")
         else:
+            print("Champs invalid")
             print(forms.errors)
             print(request.POST)
 
