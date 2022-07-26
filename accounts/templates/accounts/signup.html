@@ -14,7 +14,12 @@
     <div class="row col-md-4 offset-md-4">
   
       {% csrf_token %}
-
+      {% if forms.errors  %}
+      <div class="card" style="background-color: rgba(128, 128, 128, 0.541);">
+      {{ forms.errors }} 
+      </div>
+        
+      {% endif %} 
 
       <div class="form-group">
         <label for="username">Nom d’utilisateur : </label>
@@ -59,10 +64,7 @@
         <br>
       </div>
       <br>
-      {% if forms.errors  %}
-    
-      {{ forms.errors }}  
-      {% endif %}  
+ 
       <button type="submit" value="Connexion" class="btn btn-primary bg-dark">S'inscrire</button>
 
 
