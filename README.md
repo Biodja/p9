@@ -20,3 +20,15 @@ puissent demander des résumés de livres
 # Les dependances utilisé
 - Bootstrap
 - Django version 4.0.3
+
+# log de test
+compte1
+login : test1
+mdp : soutenance1
+
+compte2
+login : test2
+mdp : soutenance1
+
+- users disponible pour following
+user1, user2 ( a rentré dans la barre de recherche de la section abonnement )
