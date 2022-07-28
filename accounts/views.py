@@ -33,3 +33,8 @@ def afficher_flux(request):
 def login(request):
 
     return redirect("login")
+
+
+def logout(request):
+
+    return redirect("login")

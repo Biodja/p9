@@ -1,17 +1,26 @@
+
 from itertools import chain
+
+from webbrowser import get
+from django.http import HttpResponse, HttpResponseRedirect
+
+from django.urls import reverse_lazy, reverse
 from .formulaires import (
     DemandeDeCritiquePublication,
+    EditForm,
     ReviewForm,
     UserFollowForm,
+    CreeCritiquePublication,
 )
 from .models import Ticket, Review, UserFollows
 from django.db.models import CharField, Value
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 from django.utils.decorators import method_decorator
 from urllib.parse import urlencode
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.views.generic import UpdateView , DeleteView
 
 _MESSAGES = {
     "unknown_user": "Utilisateur inconnu !",
@@ -36,10 +45,13 @@ def afficher_review(request):
     posts = sorted(
         chain(reviews, tickets), key=lambda post: post.time_created, reverse=True
     )
+
+ 
+
     return render(
         request,
         "Home.html",
-        context={"posts": posts, "publication": DemandeDeCritiquePublication()},
+        context={"posts": posts, "publication": DemandeDeCritiquePublication(), "total_likes": total_likes },
     )
 
 
@@ -90,6 +102,33 @@ def afficher_home(request):
 
 
 @login_required
+def voir_post(request, ticket_id):
+    ticket = Ticket.objects.get(id=ticket_id)
+    if request.method == "POST":
+
+        publication = ReviewForm(request.POST, request.FILES)
+        if [publication.is_valid()]:
+            review = publication.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+
+            return redirect("Home")
+        else:
+            print(publication.errors)
+            print(request.POST)
+    else:
+        publication = ReviewForm()
+
+    # returns queryset of tickets
+
+    return render(
+        request,
+        "voir_post.html",
+        context={"ticket": ticket, "voir_post": publication},
+    )
+
+@login_required
 def publication_ticket(request):
 
     if request.method == "POST":
@@ -110,6 +149,61 @@ def publication_ticket(request):
     # returns queryset of tickets
 
     return render(request, "demande_de_critique.html", context={"demande": publication})
+
+
+class ModifTicketView(UpdateView):
+    model = Ticket
+    form_class = EditForm
+    template_name = 'voir_post.html'
+    #fields = ['title', 'description', 'image', 'rating',] 
+
+class DeleteTicketView(DeleteView):
+    model = Ticket
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('Home')
+    #fields = ['title', 'description', 'image', 'rating',] 
+
+class ModifReviewView(UpdateView):
+    model = Review
+    form_class = EditForm
+    template_name = 'voir_post.html'
+    #fields = ['title', 'description', 'image', 'rating',] 
+
+class DeleteReviewView(DeleteView):
+    model = Review
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('Home')
+    #fields = ['title', 'description', 'image', 'rating',] 
+
+
+@login_required
+def LikeView (request, pk):
+    post = get_object_or_404(Review, id=request.POST.get('post.id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('posts', args=[str(pk)])) 
+
+
+@login_required
+def cree_critique(request):
+
+    if request.method == "POST":
+
+        publication = CreeCritiquePublication(request.POST, request.FILES)
+        if [publication.is_valid()]:
+            ticket = publication.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+
+            return redirect("Home")
+        else:
+            print(publication.errors)
+            print(request.POST)
+    else:
+        publication = CreeCritiquePublication()
+
+    # returns queryset of tickets
+
+    return render(request, "cree_une_critique.html", context={"cree": publication})
 
 
 @login_required

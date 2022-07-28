@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
@@ -11,18 +12,26 @@ class Ticket(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField()
+    validators = [MinValueValidator(0), MaxValueValidator(5)]
+    likes = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='likes_tickets')
+
+
 
     def resize_image(self):
         print("self")
         print(self)
         print(self.image)
-        image = Image.open(self.image)
+        image = Image.open(self.image) 
 
         image.save(self.image.path)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.resize_image()
+
+    def get_absolute_url(self):
+        return reverse('Home')
 
 
 class Review(models.Model):
@@ -37,6 +46,11 @@ class Review(models.Model):
     validators = [MinValueValidator(0), MaxValueValidator(5)]
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='likes_reviews')
+
+
+    def get_absolute_url(self):
+        return reverse('Home')
 
 
 class UserFollows(models.Model):

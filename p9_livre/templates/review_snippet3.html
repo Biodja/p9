@@ -10,8 +10,9 @@
         
         </div>
     </div>
-
+    {% if review.title %}
     <h5 class="card-title" style="margin-top: 20px;">Titre de la review : {{ review.title }}</h5>
+    {% endif %}
     <p class="card-text">{{ review.description }}</p>
     <h5 class="card-title" style="margin-top: 20px;">Note : {{ review.rating }} / 5</h5>
 
@@ -20,7 +21,14 @@
     <ul class="nav nav-pills" style="margin-top: 10px;">
    
         <ul class="nav nav-pills" style="margin-top: 10px;">
-
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="{% url 'modif_review' review.pk %}">Modifier</a>
+                
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="{% url 'delete_review' review.pk %}">Supprimer la review</a>
+                
+              </li>
 
 
         </ul> 

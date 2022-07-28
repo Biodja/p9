@@ -28,5 +28,16 @@ urlpatterns = [
     path("essai/", views.afficher_review),
     path("index/", views.afficher_review, name="index"),
     path("demande_de_critique/", views.publication_ticket, name="demande"),
+    path("cree_une_critique/", views.cree_critique, name="cree"),
+
+    path("ticket/edit/<int:pk>", views.ModifTicketView.as_view(),name="modif_post"),
+    path("ticket/<int:pk>/remove", views.DeleteTicketView.as_view(),name="delete_post"),
+    
+    path("review/edit/<int:pk>", views.ModifReviewView.as_view(),name="modif_review"),
+    path("review/<int:pk>/remove", views.DeleteReviewView.as_view(),name="delete_review"),
+
     path("fenêtre_repondre/<ticket_id>/", views.repondre_ticket, name="reponse"),
+    path("ticket/<ticket_id>/", views.voir_post, name="voir_post"),
+
+    path('like/<int:pk>', views.LikeView , name='like_post')
 ]

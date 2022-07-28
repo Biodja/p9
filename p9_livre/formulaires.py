@@ -8,6 +8,7 @@ class DemandeDeCritiquePublication(forms.ModelForm):
         fields = (
             "title",
             "description",
+            "rating",
             "image",
         )
         widgets = {
@@ -15,6 +16,58 @@ class DemandeDeCritiquePublication(forms.ModelForm):
             "description": forms.Textarea(attrs={"class": "form-control"}),
         }
 
+
+class CreeCritiquePublication(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = (
+            "title",
+            "description",
+            "image",
+            "rating",
+        )
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "description": forms.Textarea(attrs={"class": "form-control"}),
+            "rating": forms.RadioSelect(
+                choices=[
+                    (0, "0"),
+                    (1, "1"),
+                    (2, "2"),
+                    (3, "3"),
+                    (4, "4"),
+                    (5, "5"),
+                ],
+                attrs={"required": True},
+            ),
+        }
+
+
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = (
+            "title",
+            "description",
+        
+            "rating",
+        )
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "description": forms.Textarea(attrs={"class": "form-control"}),
+            "rating": forms.RadioSelect(
+                choices=[
+                    (0, "0"),
+                    (1, "1"),
+                    (2, "2"),
+                    (3, "3"),
+                    (4, "4"),
+                    (5, "5"),
+                ],
+                attrs={"required": True},
+            ),
+           
+        }
 
 class RepondreCritique(forms.ModelForm):
     class Meta:
