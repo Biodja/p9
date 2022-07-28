@@ -1,0 +1,27 @@
+{% extends 'base2.html' %}
+
+
+
+{% block content %}
+<form method="POST" class=" bg-dark">
+    {% csrf_token %}
+<div class="container-fluid card col-xl-10 col-xxl-5 px-4 py-5 position-absolute top-50 start-50 translate-middle ">
+    <div class="row card-body align-items-center g-lg-5 py-5 " style="bottom: -100px;">
+      <div class="text-center">
+        <p class="fs-3">Nous vous remercions de votre visite !</p>
+        <br>
+        <p class="fs-7">Vous ête deconnecté !</p>
+
+      </div>
+          <a class="w-100 btn btn-lg btn-primary bg-dark " href="{% url 'login' %}" >Se reconnecter</a>
+          <hr class="my-4">
+          <small class="text-muted text-center">By clicking Sign up, you agree to the terms of use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+{% endblock %}
+
